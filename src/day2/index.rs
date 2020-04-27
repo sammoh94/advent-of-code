@@ -21,7 +21,7 @@ fn restore_state() -> Result<u64> {
     let mut index = 0;
 
     while index <= numbers.len() {
-        let (new_value, must_halt) = process_opcode(&numbers, &index);
+        let (new_value, must_halt) = process_opcode(&numbers, index);
         if must_halt == true {
             break;
         };
@@ -33,10 +33,10 @@ fn restore_state() -> Result<u64> {
     Ok(numbers[0])
 }
 
-fn process_opcode(numbers: &Vec<u64>, index: &usize) -> (u64, bool) {
-    let opcode = numbers[*index];
-    let num_1_pos = numbers[*index + 1];
-    let num_2_pos = numbers[*index + 2];
+fn process_opcode(numbers: &Vec<u64>, index: usize) -> (u64, bool) {
+    let opcode = numbers[index];
+    let num_1_pos = numbers[index + 1];
+    let num_2_pos = numbers[index + 2];
 
     if opcode == 99 {
         return (0, true);
